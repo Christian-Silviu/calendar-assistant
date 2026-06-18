@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import InputBar from "./InputBar";
-import { sendMessage } from "./api";
+import { sendMessage, createEvent } from "./api";
+import ConfirmEvent from "./ConfirmEvent";
 import './App.css'
 
 function App() {
@@ -12,6 +13,15 @@ function App() {
     setParsedEvent([...parsedEvent, response.data])
   }
 
+  async function handleConfirm() {
+    await createEvent(latestEvent)
+    setParsedEvent([])
+  }
+
+  function handleReject() {
+    setParsedEvent([])
+  }
+
   const latestEvent = parsedEvent.at(-1)
   const summary = latestEvent
     ? `Schedule ${latestEvent.title} on ${new Date(latestEvent.start_time).toLocaleString()}? ${latestEvent.description}`
@@ -20,6 +30,7 @@ function App() {
     <div className="inside">
       <h1>Calendar Assistant</h1>
       <p>{summary}</p>
+      {summary != "" && <ConfirmEvent event={latestEvent} onConfirm={handleConfirm} onReject={handleReject} />}
       <InputBar value={message} onChange={setMessage} onSend={handleSend}/>
     </div>
   )
