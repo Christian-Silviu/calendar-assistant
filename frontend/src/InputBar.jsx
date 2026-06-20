@@ -11,13 +11,16 @@ export default function InputBar({value, onChange, onSend}) {
     }
 
     return (
-        <div className="textBar">
+        <div className="input-container">
             <input
+                placeholder="Enter text"
+                className="input-field"
                 type="text"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 onKeyDown={handleKeyDown}
             />
+            <span className="input-highlight"></span>
         </div>
     )
 }
