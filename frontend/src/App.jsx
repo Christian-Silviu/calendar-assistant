@@ -28,7 +28,7 @@ function App() {
     : ""
   return (
     <div className="inside">
-      <h1>Calendar Assistant</h1>
+      <h1 className="masked-text">Calendula</h1>
       <p>{summary}</p>
       {summary != "" && <ConfirmEvent event={latestEvent} onConfirm={handleConfirm} onReject={handleReject} />}
       <InputBar value={message} onChange={setMessage} onSend={handleSend}/>
