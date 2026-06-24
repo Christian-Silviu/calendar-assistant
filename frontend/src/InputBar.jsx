@@ -13,14 +13,14 @@ export default function InputBar({value, onChange, onSend}) {
     return (
         <div className="input-container">
             <input
-                placeholder="Enter text"
-                className="input-field"
+                placeholder=""
+                className="styled_input_bar"
                 type="text"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 onKeyDown={handleKeyDown}
             />
-            <span className="input-highlight"></span>
+            <label className="input-label" for="styled_input_bar">Schedule something.</label>
         </div>
     )
 }

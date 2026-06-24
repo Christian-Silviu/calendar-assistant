@@ -1,29 +1,48 @@
 .input-container {
   position: relative;
-  margin: 20px;
+  width: 300px;
 }
-
-.input-field {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  outline: none;
+.styled_input_bar {
+  width: 90%;
+  padding: 1em;
+  font-size: 1em;
+  border: 0.1em solid grey;
+  border-radius: 2em;
   background-color: transparent;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
-
-.input-highlight {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background-color: #007bff;
+.styled_input_bar::placeholder {
+  color: grey;
   transition: all 0.3s ease;
 }
-
-.input-field:focus + .input-highlight {
-  width: 100%;
+.styled_input_bar:focus {
+  border-color: white;
+}
+.styled_input_bar:focus::placeholder {
+  color: transparent;
+}
+.input-label {
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: grey;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+.styled_input_bar:focus + .input-label,
+.styled_input_bar:not(:placeholder-shown) + .input-label {
+  top: 0.1em;
+  left: 1em;
+  font-size: 0.8em;
+  color: white;
+  background-color: #212121; /* IMPORTANT: Make sure you change this background color to the exact background color of your webpage or the background color of the container in which this input bar is contained. */
+  padding: 0 0.5em;
+}
+.styled_input_bar:not(:focus):not(:placeholder-shown) + .input-label {
+  color: grey;
 }
