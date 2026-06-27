@@ -7,15 +7,18 @@ import './App.css'
 function App() {
   const [message, setMessage] = useState("")
   const [parsedEvent, setParsedEvent] = useState([])
+  const [successMessage, setSuccessMessage] = useState("")
 
   async function handleSend(text) {
     const response = await sendMessage(text)
     setParsedEvent([...parsedEvent, response.data])
+    setSuccessMessage("")
   }
 
   async function handleConfirm() {
     await createEvent(latestEvent)
     setParsedEvent([])
+    setSuccessMessage("✅ Event created!")
   }
 
   function handleReject() {
@@ -31,6 +34,7 @@ function App() {
       <h1 className="masked-text">Calendula</h1>
       <InputBar value={message} onChange={setMessage} onSend={handleSend}/>
       <p>{summary}</p>
+      {successMessage && <p>{successMessage}</p>}
       {summary != "" && <ConfirmEvent event={latestEvent} onConfirm={handleConfirm} onReject={handleReject} />}
     </div>
   )
