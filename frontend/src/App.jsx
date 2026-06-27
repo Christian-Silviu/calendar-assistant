@@ -24,7 +24,7 @@ function App() {
 
   const latestEvent = parsedEvent.at(-1)
   const summary = latestEvent
-    ? `Schedule ${latestEvent.title} on ${new Date(latestEvent.start_time).toLocaleString()}? ${latestEvent.description}`
+    ? `Schedule ${latestEvent.title} on ${new Date(latestEvent.start_time).toLocaleDateString([], {month: 'numeric', day: 'numeric', year: 'numeric'})} at ${new Date(latestEvent.start_time).toLocaleTimeString([], {hour: 'numeric', minute:'2-digit'})}?${latestEvent.description ? ` ${latestEvent.description}` : ""}`
     : ""
   return (
     <div className="inside">
