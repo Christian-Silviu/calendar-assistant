@@ -34,6 +34,7 @@ app.add_middleware(
 
 class UserMessage(BaseModel):
     message: str
+    timezone: str
 
 class EventResponse(BaseModel):
     title: str
@@ -51,9 +52,9 @@ def events():
 def chat(body: UserMessage):
     parsed = parse_user_message(body.message)
     temp_start = datetime.fromisoformat(parsed["start_time"])
-    zone_start = temp_start.replace(tzinfo=ZoneInfo("America/New_York"))
+    zone_start = temp_start.replace(tzinfo=ZoneInfo(body.timezone))
     temp_end = datetime.fromisoformat(parsed["end_time"])
-    zone_end = temp_end.replace(tzinfo=ZoneInfo("America/New_York"))
+    zone_end = temp_end.replace(tzinfo=ZoneInfo(body.timezone))
     recent = get_upcoming_events()
     conflicts = get_conflicting_events(zone_start, zone_end, recent)
     conflict_bool = len(conflicts) > 0

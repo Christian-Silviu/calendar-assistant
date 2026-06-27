@@ -14,11 +14,11 @@ def create_event(event_data: dict):
         "summary": event_data["title"],
         "start": {
             "dateTime": event_data["start_time"],
-            "timeZone": "America/New_York",
+            "timeZone": event_data["timezone"],
         },
         "end": {
             "dateTime": event_data["end_time"],
-            "timeZone": "America/New_York",
+            "timeZone": event_data["timezone"],
         },
     }
 

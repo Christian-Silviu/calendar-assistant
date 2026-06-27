@@ -3,11 +3,13 @@ import axios from "axios"
 const API_URL = "http://localhost:8000"
 
 export function sendMessage(message) {
-    return axios.post(`${API_URL}/chat`, { message })
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    return axios.post(`${API_URL}/chat`, { message, timezone })
 }
 
 export function createEvent(eventData) {
-    return axios.post(`${API_URL}/create-event`, eventData)
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    return axios.post(`${API_URL}/create-event`, { ...eventData, timezone })
 }
 
 export function getEvents() {
